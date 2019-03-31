@@ -1,0 +1,28 @@
+<div>
+    <h4>Interpolation Example</h4>
+    <b>
+        Message: {{ message }}
+    </b>
+
+    <div>
+        Colors: {{ colors }}
+    </div>
+
+    <div>
+        User: {{ user }}
+    </div>
+
+    <div>
+        Name: {{ user.name }}
+        Email: {{user.email}}
+    </div>
+
+    <div>
+        Active: {{ active }}
+
+        {{ active ? 'Active' : 'Disabled' }}
+    </div>
+    <div>
+        Is Disabled: {{ active === false ? 'Yes' : 'No' }}
+    </div>
+</div>
