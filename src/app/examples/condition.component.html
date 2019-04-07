@@ -1,0 +1,47 @@
+<div>
+    <h4>Condition Example</h4>
+    <div>
+        <button (click)="toggle()">{{showNotification?'Hide':'Show'}} Notification</button>
+    </div>
+
+    <div class="notification error" *ngIf="showNotification">
+        Your password is going to be expired in 7 days.
+    </div>
+    <div class="notification success" *ngIf="!showNotification">
+        All Good
+    </div>
+    <div>
+        <button [disabled]="step === 3" (click)="inc()">Next</button>
+        <button [disabled]="step === 0" (click)="dec()">Prev</button>
+    </div>
+    <div>
+
+        <div class="notification" *ngIf="step===1">
+            Current Step : {{ step }}
+        </div>
+        <div class="notification" *ngIf="step===2">
+            Current Step : {{ step }}
+        </div>
+        <div class="notification" *ngIf="step===3">
+            Current Step : {{ step }}
+        </div>
+        <div class="notification" *ngIf="step < 1 || step > 3">
+            No step
+        </div>
+    </div>
+
+    <div [ngSwitch]="step">
+        <div class="notification" *ngSwitchCase="1">
+            Switch Case Current Step : {{ step }}
+        </div>
+        <div class="notification" *ngSwitchCase="2">
+            Switch Case Current Step : {{ step }}
+        </div>
+        <div class="notification" *ngSwitchCase="3">
+            Switch Case Current Step : {{ step }}
+        </div>
+        <div class="notification" *ngSwitchDefault>
+            Switch Case No step
+        </div>
+    </div>
+</div>
