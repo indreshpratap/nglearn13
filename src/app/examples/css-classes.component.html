@@ -1,0 +1,53 @@
+<div class="card">
+    <div class="card-header">
+        <div class="card-header-title">
+            <strong>Css Classes (ngClass) example</strong>
+        </div>
+    </div>
+    <div class="card-content">
+        <article class="message test" [ngClass]="msgThemeClass">
+            <div class="message-header">
+                <p>Info</p>
+                <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                Example of string ngClass
+            </div>
+        </article>
+
+        <article class="message" [ngClass]="msgThemeClassArray">
+            <div class="message-header">
+                <p>Success</p>
+                <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                Example of array ngClass
+            </div>
+        </article>
+
+        <article class="message" [ngClass]="msgThemeConditions">
+            <div class="message-header">
+                <p>Success</p>
+                <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                Example of Conditional ngClass
+                <button (click)="toggleProp('is-danger')">Toggle Error</button>
+                <button (click)="toggleProp('is-inline-block')">Toggle Block</button>
+            </div>
+        </article>
+
+
+        <article class="message" [class.is-danger]="!valid"
+          [class.is-success]="valid">
+                <div class="message-header">
+                    <p>{{valid?'Success':'Error'}}</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                    Example of Conditional class.class-name
+                    <button (click)="toggleState()">Toggle State</button>
+                </div>
+            </article>
+    </div>
+</div>

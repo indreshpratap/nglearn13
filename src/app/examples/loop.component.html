@@ -1,16 +1,21 @@
-<div>
-    <h4>Loop (ngFor) example</h4>
-
-    <!-- here #<variable-name> to create a template variable -->
-    <input #todoInput>   {{todoInput}}
-<button (click)="addItem(todoInput)"  #btn>Add Item</button>
-    <ul>
-        <li *ngFor="let item of listItems;let ind = index;let first = first;let last = last;
+<div class="card">
+    <div class="card-header">
+        <div class="card-header-title">
+            <h4>Loop (ngFor) example</h4>
+        </div>
+    </div>
+    <div class="card-content">
+        <!-- here #<variable-name> to create a template variable -->
+        <input #todoInput> {{todoInput}}
+        <button (click)="addItem(todoInput)" #btn>Add Item</button>
+        <ul>
+            <li *ngFor="let item of listItems;let ind = index;let first = first;let last = last;
         let odd = odd; let even = even;
         " id="list-{{ind}}">
-            {{ item }}  Index: {{ ind }}  is first : {{first}}  Is last: {{ last }}
-            Odd:  {{odd}} Even: {{even}}
-            <button (click)="removeIem(item,ind)">X</button>
-        </li>
-    </ul>
+                {{ item }} Index: {{ ind }} is first : {{first}} Is last: {{ last }}
+                Odd: {{odd}} Even: {{even}}
+                <button (click)="removeIem(item,ind)">X</button>
+            </li>
+        </ul>
+    </div>
 </div>
