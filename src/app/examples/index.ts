@@ -5,6 +5,8 @@ import { ConditionComponent } from './condition.component';
 import { LoopComponent } from './loop.component';
 import { Example } from './example-comp';
 import { CssClassesComponent } from './css-classes.component';
+import { ProductListingComponent } from './product-listing.component';
+import { ProductItemComponent } from './product-item.component';
 
 export const EXAMPLE_COMPONENTS = [
     InterpolationComponent,
@@ -13,5 +15,7 @@ export const EXAMPLE_COMPONENTS = [
     ConditionComponent,
     LoopComponent,
     Example,
-    CssClassesComponent
+    CssClassesComponent,
+    ProductListingComponent,
+    ProductItemComponent
 ];

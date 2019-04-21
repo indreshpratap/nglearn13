@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="card-header">
+        <div class="card-header-title">
+            <strong>Products ({{ productList.length }})</strong>
+        </div>
+    </div>
+    <div class="card-content">
+        <div class="columns is-multiline">
+            <div class="column is-4" *ngFor="let product of productList">
+                <app-product-item 
+                [item]="product" 
+                [showRemoveBtn]="product.inCart" 
+                [showAddToCart]="!product.inCart"
+                (onAddToCart)="pushToCart($event)"
+                (onRemove)="removeFromCart($event)"></app-product-item>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+        <div class="card-header">
+            <div class="card-header-title">
+                <strong>In Cart ({{ productList.length }})</strong>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="columns is-multiline">
+                <ng-container *ngFor="let product of productList">
+                <div class="column is-4" *ngIf="product.inCart">
+                    <app-product-item 
+                    [item]="product" 
+                    [showRemoveBtn]="true" 
+                    [showAddToCart]="false"
+                    (onRemove)="removeFromCart($event)"></app-product-item>
+                </div>
+            </ng-container>
+            </div>
+        </div>
+    </div>
