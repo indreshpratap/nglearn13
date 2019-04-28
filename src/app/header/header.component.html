@@ -3,5 +3,28 @@
         <div class="navbar-brand">
             <a class=" navbar-item title is-3">Angular Learning</a>
         </div>
+        <div class="navbar-start">
+            <a class="navbar-item" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="is-active"
+                routerLink="/">Home </a>
+            <a class="navbar-item" routerLinkActive="is-active" routerLink="/about"> About</a>
+            <a class="navbar-item" routerLinkActive="is-active" routerLink="/contact">Contact</a>
+            <div class="navbar-item has-dropdown is-hoverable">
+
+                <a class="navbar-link">Examples</a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" routerLinkActive="is-active" routerLink="/interpolation">Interpolation</a>
+                    <a class="navbar-item" routerLinkActive="is-active" routerLink="/property-binding">Property
+                        Binding</a>
+                    <a class="navbar-item" routerLinkActive="is-active" routerLink="/event">Event</a>
+                    <a class="navbar-item" routerLinkActive="is-active" routerLink="/condition">condition</a>
+                    <a class="navbar-item" routerLinkActive="is-active" routerLink="/loop">loop</a>
+                    <a class="navbar-item" routerLinkActive="is-active" routerLink="/css-classes">css-classes</a>
+                    <a class="navbar-item" routerLinkActive="is-active" routerLink="/input-output">input-output</a>
+
+                </div>
+            </div>
+
+        </div>
+
     </nav>
 </div>
