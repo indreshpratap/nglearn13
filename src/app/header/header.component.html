@@ -6,12 +6,12 @@
         <div class="navbar-start">
             <ng-container *ngFor="let item of menu">
                 <a class="navbar-item" *ngIf="!item.children" [routerLinkActiveOptions]="{exact:true}"
-                    routerLinkActive="is-active" [routerLink]="item.link">{{ item.label }} </a>
+                    routerLinkActive="is-active" routerLink="{{item.link}}">{{ item.label }} </a>
                 <div *ngIf="item.children" routerLinkActive="parent-active" class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">{{ item.label }}</a>
                     <div class="navbar-dropdown">
                         <a class="navbar-item" *ngFor="let childItem of item.children" routerLinkActive="is-active"
-                            [routerLink]="childItem.link"> {{ childItem.label }} </a>
+                            routerLink="{{childItem.link}}" [queryParams]="childItem.queryParams"> {{ childItem.label }} </a>
                     </div>
                 </div>
 

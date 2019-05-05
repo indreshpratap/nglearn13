@@ -28,6 +28,8 @@ export class HeaderComponent {
                 { label: "Products", link: "/admin/products" },
                 { label: "Category Manager", link: "/admin/category-manager" },
                 { label: "New Product", link: "/admin/new-product" },
+                { label: "Edit Product 1", link: "/admin/new-product/edit/1", queryParams:{demo:"one"} },
+                { label: "Edit Product 2", link: "/admin/new-product/edit/2",queryParams:{demo:"two"} },
 
             ]
         }
