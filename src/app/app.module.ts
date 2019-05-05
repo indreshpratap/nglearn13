@@ -5,7 +5,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import * as pages from './pages';
-import { ExampleModule } from './examples/example.module';
+import { ExampleModule } from '../app-modules/examples/example.module';
+import { AdminModule } from 'src/app-modules/admin/admin.module';
 
 
 const routes = [
@@ -26,7 +27,8 @@ const routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    ExampleModule
+    ExampleModule, // eager loading of feature module
+    AdminModule // eager loading of feature module
 
   ],
   bootstrap: [AppComponent]
