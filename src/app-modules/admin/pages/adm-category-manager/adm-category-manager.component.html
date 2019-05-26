@@ -1,3 +1,44 @@
-<p>
-  adm-category-manager works!
-</p>
+<h2>Category Manager</h2>
+
+<div>
+  <form #categoryForm="ngForm">
+
+    <!-- Two way binding -->
+    <input name="cat_name" type="text" pattern="[a-z]+" required minlength="10" [(ngModel)]="category"
+      placeholder="New Category" #catModel="ngModel">
+    <app-field-error [control]="catModel" [messages]="{pattern:'Only small letters are allowed'}"></app-field-error>
+
+    <!-- Property binding -->
+    <input name="group" type="text" required minlength="10" [ngModel]="group" placeholder="New Category"
+      #groupModel="ngModel">
+    <app-field-error [control]="groupModel"></app-field-error>
+
+    <div>
+
+      <!-- NO binding (Plain ngModel) -->
+      <textarea required maxlength="100" name="description" ngModel rows="3" cols="50"></textarea>
+      {{categoryForm.value.description?.length}}/100
+      <app-field-error [control]="categoryForm?.controls['description']"></app-field-error>
+    </div>
+    <div>
+
+      <button class="button is-primary" (click)="save(categoryForm)">Save</button>
+    </div>
+
+  </form>
+
+  <pre>
+
+     Category: {{category}}
+     Group: {{group}}
+        {{categoryForm?.controls['cat_name']?.errors | json}}
+   
+   Form Value:
+
+   {{categoryForm.value | json}}
+      </pre>
+
+  Invalid: {{ categoryForm.invalid }}
+
+  {{categoryForm.status}}
+</div>

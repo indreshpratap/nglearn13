@@ -1,0 +1,6 @@
+<div *ngIf="control && control.touched && control?.errors">
+    <div *ngIf="control.errors['required']">Field is required</div>
+    <div *ngIf="control.errors['minlength']">Minimum length is {{control.errors['minlength'].requiredLength}}</div>
+    <div *ngIf="control.errors['maxlength']">Maximum length is {{control.errors['maxlength'].requiredLength}}</div>
+    <div *ngIf="control.errors['pattern']"> {{messages && messages.pattern? messages.pattern:'Field Error'}}</div>
+</div>

@@ -31,3 +31,13 @@
     background-color: #00b89c;
     color: #fff;
 }
+
+input.ng-touched,textarea.ng-touched {
+    &.ng-invalid {
+        border:1px solid tomato;
+    }
+
+    &.ng-valid {
+        border: 1px solid lightgreen;
+    }
+}
