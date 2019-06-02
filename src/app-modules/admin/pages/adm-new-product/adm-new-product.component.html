@@ -1,3 +1,60 @@
-<p>
-  adm-new-product works!
-</p>
+<h2 class="title is-4">New Product</h2>
+<hr>
+<div class="hr-form">
+  <form [formGroup]="form">
+    <div class="columns">
+      <div class="column">
+        <label for="">Product Name</label>
+        <input type="text" formControlName="name">
+        <app-field-error [control]="form.get('name')"></app-field-error>
+      </div>
+      <div class="column">
+        <label for="">Category</label>
+        <select formControlName="category">
+          <option></option>
+          <option>Cat 1</option>
+          <option>Cat 2</option>
+        </select>
+        <app-field-error [control]="form.get('category')"></app-field-error>
+      </div>
+      <div class="column">
+        <label for="">Description</label>
+        <textarea rows="3" cols="50" formControlName="description"></textarea>
+      </div>
+      <div class="column">
+        <label for="">Published</label>
+        <input type="checkbox" formControlName="published">
+      </div>
+
+    </div>
+
+    <div class="columns" formGroupName="address">
+      <div class="column">
+        <label for="">Line 1</label>
+        <input type="text" formControlName="line1">
+        <app-field-error [control]="form.get('address').get('line1')"></app-field-error>
+      </div>
+      <div class="column">
+        <label for="">Line 2</label>
+        <input type="text" formControlName="line2">
+        <!-- <app-field-error [control]="form.get('name')"></app-field-error> -->
+      </div>
+    </div>
+
+
+
+
+    <div>
+
+      <button class="button is-primary" (click)="save()">Save</button>
+    </div>
+
+  </form>
+
+  <pre>
+
+    Valid : {{ form.valid }}
+    {{form.value | json}}
+    </pre>
+
+</div>
