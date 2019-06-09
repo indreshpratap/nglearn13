@@ -33,11 +33,42 @@
         <label for="">Line 1</label>
         <input type="text" formControlName="line1">
         <app-field-error [control]="form.get('address').get('line1')"></app-field-error>
+        <!-- {{form.get('address').get('line1')?.errors | json}} -->
       </div>
       <div class="column">
         <label for="">Line 2</label>
         <input type="text" formControlName="line2">
-        <!-- <app-field-error [control]="form.get('name')"></app-field-error> -->
+        <app-field-error [control]="form.get('address').get('line2')"></app-field-error>
+      </div>
+    </div>
+    <div class="columns" formArrayName="experience">
+      <div class="column">
+        <h4 class="title is-5">Experience</h4>
+       <table class="table is-bordered">
+         <thead>
+           <tr>
+             <th>Company</th>
+             <th>Title</th>
+             <th>From</th>
+             <th>To</th>
+             <th>#</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr *ngFor="let exp of experience.controls;let index=index" [formGroupName]="index">
+             <td>
+               <input type="text" formControlName="companyName">
+               <app-field-error [control]="exp.get('companyName')"></app-field-error>
+            </td>
+             <td><input type="text" formControlName="jobTitle">
+            
+            </td>
+             <td><input type="text" formControlName="from"></td>
+             <td><input type="text" formControlName="to"></td>
+             <td><button (click)="deleteExp(index)">x</button></td>
+           </tr>
+         </tbody>
+       </table>
       </div>
     </div>
 
@@ -46,7 +77,8 @@
 
     <div>
 
-      <button class="button is-primary" (click)="save()">Save</button>
+      <button class="button is-primary" [disabled]="form.invalid" (click)="save()">Save</button>
+      <button class="button is-secondary" (click)="addExperience()">Add</button>
     </div>
 
   </form>

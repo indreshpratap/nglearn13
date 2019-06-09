@@ -11,7 +11,7 @@ export class FieldErrorComponent implements OnInit {
   @Input() control:FormControl;
 
   @Input() messages:any;
-
+  
   constructor() { }
 
   ngOnInit() {

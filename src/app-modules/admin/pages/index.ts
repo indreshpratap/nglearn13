@@ -9,12 +9,9 @@ export const adminPages = [
     AdmProductListComponent
 ];
 
-export const adminRoutes: Routes = [
-    // {
-    //     path: "", component:AdminComponent, children: [
-    { path: "category-manager", component: AdmCategoryManagerComponent },
-    { path: "products", component: AdmProductListComponent },
-    { path: "new-product", loadChildren: "./adm-new-product/new-product.module#NewProductModule" }
-    //     ]
-    // }
-];
+
+export * from './adm-category-manager/adm-category-manager.component';
+export * from './adm-new-product/adm-new-product.component';
+export * from './adm-product-list/adm-product-list.component';
+export * from './admin.component';
+

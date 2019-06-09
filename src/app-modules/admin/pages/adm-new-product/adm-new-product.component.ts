@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { MyValidators } from 'src/app-modules/shared/utils/custom.validator';
 
 @Component({
   selector: 'app-adm-new-product',
   templateUrl: './adm-new-product.component.html',
   styleUrls: ['./adm-new-product.component.scss']
 })
-export class AdmNewProductComponent {
+export class AdmNewProductComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
+  submitted = false;
+  experience: FormArray;
   constructor(
     private activatedRoutes: ActivatedRoute,
     private fb: FormBuilder) {
@@ -27,9 +30,28 @@ export class AdmNewProductComponent {
 
   }
 
-
+  ngOnInit() {
+    //  this.addExperience();
+    let formData = localStorage.getItem('userForm');
+    if (formData) {
+      let data = JSON.parse(formData);
+      if (data.experience && data.experience.length) {
+        for (let i of data.experience) {
+          this.addExperience();
+        }
+      } else {
+        this.addExperience();
+      }
+      this.form.patchValue(data);
+    } else {
+      this.addExperience();
+    }
+  }
   save() {
     console.log(this.form.value);
+    this.submitted = true;
+    this.form.reset();
+    this.clearStore();
   }
 
 
@@ -40,18 +62,46 @@ export class AdmNewProductComponent {
     //   category: new FormControl('Cat 1', [Validators.required]),
     //   published: new FormControl(true)
     // });
-let addressGroup = this.fb.group({
-  line1:["Addr",[Validators.required]],
-  line2:null
-}); 
+    let addressGroup = this.fb.group({
+      line1: ["", [Validators.required, MyValidators.addressAlphaNum]],
+      line2: [null, [Validators.required, MyValidators.addressAlphaNum]]
+    });
+
+    this.experience = this.fb.array([]);
 
     this.form = this.fb.group({
-      name: ['ABC', [Validators.required]],
+      name: ['', [Validators.required]],
       description: null,
-      category: ['Cat 1', [Validators.required]],
+      category: ['', [Validators.required]],
       published: true,
-      address: addressGroup
+      address: addressGroup,
+      experience: this.experience
     });
+  }
+
+  addExperience() {
+    this.experience.push(this.fb.group({
+      companyName: [, [Validators.required]],
+      jobTitle: [],
+      from: [],
+      to: []
+    }));
+  }
+
+  deleteExp(index) {
+    if(confirm('Are you  sure want to delete?')){
+    this.experience.removeAt(index);
+    }
+  }
+  ngOnDestroy() {
+    if (!this.submitted) {
+      localStorage.setItem('userForm', JSON.stringify(this.form.value));
+    }
+
+  }
+
+  clearStore() {
+    localStorage.removeItem('userForm');
   }
 
 
