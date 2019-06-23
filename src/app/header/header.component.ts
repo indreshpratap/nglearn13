@@ -21,6 +21,7 @@ export class HeaderComponent {
                     { label: "loop", link: "/loop" },
                     { label: "css-classes", link: "/css-classes" },
                     { label: "input-output", link: "/input-output" },
+                    { label: "Observables", link: "/observables" },
                 ]
             },
             
