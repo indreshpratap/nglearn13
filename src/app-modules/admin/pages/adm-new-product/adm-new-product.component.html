@@ -10,11 +10,12 @@
       </div>
       <div class="column">
         <label for="">Category</label>
-        <select formControlName="category">
+        <p-dropdown placeholder="Select Category" showClear="true" filter="true" [options]="category" formControlName="category"></p-dropdown>
+        <!-- <select formControlName="category">
           <option></option>
           <option>Cat 1</option>
           <option>Cat 2</option>
-        </select>
+        </select> -->
         <app-field-error [control]="form.get('category')"></app-field-error>
       </div>
       <div class="column">
@@ -23,7 +24,8 @@
       </div>
       <div class="column">
         <label for="">Published</label>
-        <input type="checkbox" formControlName="published">
+        <p-checkbox [binary]="true" [formControl]="form.get('published')"></p-checkbox>
+        <!-- <input type="checkbox" formControlName="published"> -->
       </div>
 
     </div>

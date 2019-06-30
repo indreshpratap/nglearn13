@@ -13,6 +13,7 @@ export class AdmNewProductComponent implements OnInit, OnDestroy {
   form: FormGroup;
   submitted = false;
   experience: FormArray;
+  category;
   constructor(
     private activatedRoutes: ActivatedRoute,
     private fb: FormBuilder) {
@@ -31,6 +32,7 @@ export class AdmNewProductComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.setCategory();
     //  this.addExperience();
     let formData = localStorage.getItem('userForm');
     if (formData) {
@@ -102,6 +104,18 @@ export class AdmNewProductComponent implements OnInit, OnDestroy {
 
   clearStore() {
     localStorage.removeItem('userForm');
+  }
+
+
+  setCategory(){
+    this.category = [
+      {label:"Cat 1", value:"Cat 1"},
+      {label:"Cat 2", value:"Cat 2"},
+      {label:"Cat 3", value:"Cat 3"},
+      {label:"Cat 4", value:"Cat 4"},
+      {label:"Cat 5", value:"Cat 5"},
+      {label:"Cat 6", value:"Cat 6"}
+    ];
   }
 
 
