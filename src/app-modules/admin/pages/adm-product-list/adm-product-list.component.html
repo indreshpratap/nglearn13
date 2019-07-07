@@ -1,3 +1,22 @@
-<p>
-  adm-product-list works!
-</p>
+<h2 class="title is-4">Products ({{products?.length}})</h2>
+<hr>
+<p-table [value]="products" [paginator]="true" [rows]="50">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Department</th>
+      <th>Color</th>
+      <th>Price</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.department }}</td>
+      <td>{{ product.color }}</td>
+      <td>{{ product.price }}</td>
+    </tr>
+  </ng-template>
+</p-table>

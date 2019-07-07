@@ -8,6 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import * as pages from './pages';
 import { ExampleModule } from '../app-modules/examples/example.module';
 import { AdminModule } from 'src/app-modules/admin/admin.module';
+import { ApiClient } from './providers/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -36,11 +38,13 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     ExampleModule, // eager loading of feature module
     // AdminModule // eager loading of feature module
 
   ],
+  providers:[ApiClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

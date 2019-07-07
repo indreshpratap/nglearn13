@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiClient } from 'src/app/providers/api.service';
 
 @Component({
   selector: 'app-adm-product-list',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdmProductListComponent implements OnInit {
 
-  constructor() { }
+  // readonly PRODUCTS_API = 'http://localhost:3000/products';
 
-  ngOnInit() {
+  products;
+  constructor(private apiClient: ApiClient) {
+
+  }
+
+  ngOnInit() { 
+  
+    this.apiClient.get("products").subscribe(res => {
+      if(res.status){
+        this.products = res.data;
+      }
+        
+    });
   }
 
 }
