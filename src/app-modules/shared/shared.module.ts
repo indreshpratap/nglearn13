@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
 import { sharedComponents } from './components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PRIMENG } from './primeng';
+import { pipes } from './pipes';
 
 @NgModule({
-    declarations: [...sharedComponents],
+    declarations: [...sharedComponents,...pipes],
     imports: [
         CommonModule,
         FormsModule,
@@ -16,6 +16,7 @@ import { PRIMENG } from './primeng';
     ],
     exports: [
         ...sharedComponents,
+        ...pipes,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,

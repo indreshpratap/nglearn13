@@ -1,11 +1,18 @@
 const express = require('express');
 const faker = require('faker');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const { SEND } = require('./api/helper');
 
+
+const mountApiRoutes = require('./api/api.routes');
 // server app
 const app = express();
 
+app.use(bodyParser.json());
 app.use(cors());
+
+
 const userCache = [];
 const productCache = [];
 
@@ -35,26 +42,26 @@ function prepareProductCache() {
 }
 
 
-function SEND(res,data){
-res.json({status:true, data:data});
-}
+
 
 app.get('/', (req, res) => {
     res.send('Server is up and running for Node learn 13');
 });
 
 app.get('/users', (req, res) => {
-    if(!userCache.length){
+    if (!userCache.length) {
         prepareUserCache();
     }
     res.json(userCache);
 })
-app.get('/products', (req, res) => {
-    if(!productCache.length){
+app.get('/api/products', (req, res) => {
+    if (!productCache.length) {
         prepareProductCache();
     }
-    SEND(res,productCache);
+    SEND(res, null,productCache);
 })
+
+mountApiRoutes(app);
 
 app.listen(3000, () => {
     console.log("Server is up and running at 3000...");
