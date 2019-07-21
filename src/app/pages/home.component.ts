@@ -1,12 +1,28 @@
 import { Component } from '@angular/core';
+import { ApiClient } from '../providers/api.service';
+import { CartService } from '../providers/cart.service';
 
 @Component({
     selector: 'app-home',
-    template: `<div>this is home page</div>
-    <router-outlet></router-outlet>
-    `,
+    templateUrl: './home.component.html',
     styles: [``]
 })
-export class HomePageComponent {}
+export class HomePageComponent {
+    products;
+    constructor(private api: ApiClient, public cartSvc: CartService) {
 
- 
+    }
+
+    ngOnInit() {
+        this.fetchProducts();
+    }
+
+    fetchProducts() {
+        this.api.get('products').subscribe(res => {
+            this.products = res.data;
+        });
+    }
+
+
+}
+

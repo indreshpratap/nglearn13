@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path: 'home', component: pages.HomePageComponent },
+      { path: '', component: pages.HomePageComponent },
       {
         path: "admin", loadChildren: "../app-modules/admin/admin.module#AdminModule" //lazy loaded routes
       }

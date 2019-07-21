@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
-import { MyValidators } from 'src/app-modules/shared/utils/custom.validator';
+import { ApiClient } from 'src/app/providers/api.service';
 
 @Component({
   selector: 'app-adm-new-product',
@@ -12,13 +12,16 @@ export class AdmNewProductComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   submitted = false;
-  experience: FormArray;
+  details: FormArray;
   category;
+
   constructor(
     private activatedRoutes: ActivatedRoute,
-    private fb: FormBuilder) {
+    private fb: FormBuilder, private api: ApiClient) {
+
     console.log("Constructor", this.activatedRoutes.snapshot.params,
       this.activatedRoutes.snapshot.queryParams);
+
     this.activatedRoutes.params.subscribe((data) => {
       console.log("Subscribed data: ", data);
     });
@@ -33,28 +36,41 @@ export class AdmNewProductComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.setCategory();
-    //  this.addExperience();
+    //  this.addLabelAndDescription();
     let formData = localStorage.getItem('userForm');
     if (formData) {
       let data = JSON.parse(formData);
-      if (data.experience && data.experience.length) {
-        for (let i of data.experience) {
-          this.addExperience();
+      if (data.details && data.details.length) {
+        for (let i of data.details) {
+          this.addLabelAndDescription();
         }
       } else {
-        this.addExperience();
+        this.addLabelAndDescription();
       }
       this.form.patchValue(data);
     } else {
-      this.addExperience();
+      this.addLabelAndDescription();
     }
   }
   save() {
-    console.log(this.form.value);
+   if(this.form.valid){
+this.api.post('admin/product',this.form.value).subscribe(res=>{
+  if(res.status){
+    alert('Product saved');
     this.submitted = true;
     this.form.reset();
     this.clearStore();
+    this.prepareForm();
+    this.addLabelAndDescription();
+    
   }
+},(err)=>{
+  alert('Failed to save product!');
+})
+   }
+  }
+
+ 
 
 
   prepareForm() {
@@ -64,35 +80,34 @@ export class AdmNewProductComponent implements OnInit, OnDestroy {
     //   category: new FormControl('Cat 1', [Validators.required]),
     //   published: new FormControl(true)
     // });
-    let addressGroup = this.fb.group({
-      line1: ["", [Validators.required, MyValidators.addressAlphaNum]],
-      line2: [null, [Validators.required, MyValidators.addressAlphaNum]]
-    });
+    // let addressGroup = this.fb.group({
+    //   line1: ["", [Validators.required, MyValidators.addressAlphaNum]],
+    //   line2: [null, [Validators.required, MyValidators.addressAlphaNum]]
+    // });
 
-    this.experience = this.fb.array([]);
+    this.details = this.fb.array([]);
 
     this.form = this.fb.group({
       name: ['', [Validators.required]],
       description: null,
       category: ['', [Validators.required]],
+      price: [0, [Validators.required]],
       published: true,
-      address: addressGroup,
-      experience: this.experience
+      //   address: addressGroup,
+      details: this.details
     });
   }
 
-  addExperience() {
-    this.experience.push(this.fb.group({
-      companyName: [, [Validators.required]],
-      jobTitle: [],
-      from: [],
-      to: []
+  addLabelAndDescription() {
+    this.details.push(this.fb.group({
+      label: [, [Validators.required]],
+      description: [, [Validators.required]]
     }));
   }
 
   deleteExp(index) {
-    if(confirm('Are you  sure want to delete?')){
-    this.experience.removeAt(index);
+    if (confirm('Are you  sure want to delete?')) {
+      this.details.removeAt(index);
     }
   }
   ngOnDestroy() {
@@ -107,15 +122,13 @@ export class AdmNewProductComponent implements OnInit, OnDestroy {
   }
 
 
-  setCategory(){
-    this.category = [
-      {label:"Cat 1", value:"Cat 1"},
-      {label:"Cat 2", value:"Cat 2"},
-      {label:"Cat 3", value:"Cat 3"},
-      {label:"Cat 4", value:"Cat 4"},
-      {label:"Cat 5", value:"Cat 5"},
-      {label:"Cat 6", value:"Cat 6"}
-    ];
+  setCategory() {
+    this.api.get('admin/cat-select').subscribe(res => {
+
+      this.category = res.data.map(item => {
+        return { value: item._id, label: item.label };
+      });
+    });
   }
 
 

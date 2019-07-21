@@ -2,25 +2,24 @@
 <hr>
 <div class="hr-form">
   <form [formGroup]="form">
-    <div class="columns">
-      <div class="column">
+    <div class="columns is-multiline">
+      <div class="column is-6">
         <label for="">Product Name</label>
         <input type="text" formControlName="name">
         <app-field-error [control]="form.get('name')"></app-field-error>
       </div>
-      <div class="column">
+      <div class="column is-6">
         <label for="">Category</label>
-        <p-dropdown placeholder="Select Category" showClear="true" filter="true" [options]="category" formControlName="category"></p-dropdown>
-        <!-- <select formControlName="category">
-          <option></option>
-          <option>Cat 1</option>
-          <option>Cat 2</option>
-        </select> -->
+        <p-dropdown [style]="{width:'100%'}" placeholder="Select Category" showClear="true" filter="true" [options]="category" formControlName="category"></p-dropdown>
         <app-field-error [control]="form.get('category')"></app-field-error>
       </div>
-      <div class="column">
+      <div class="column is-6">
         <label for="">Description</label>
         <textarea rows="3" cols="50" formControlName="description"></textarea>
+      </div>
+      <div class="column is-4">
+        <label for="">Price</label>
+        <input type="number" formControlName="price">
       </div>
       <div class="column">
         <label for="">Published</label>
@@ -30,57 +29,51 @@
 
     </div>
 
-    <div class="columns" formGroupName="address">
+    <!-- <div class="columns" formGroupName="address">
       <div class="column">
         <label for="">Line 1</label>
         <input type="text" formControlName="line1">
         <app-field-error [control]="form.get('address').get('line1')"></app-field-error>
-        <!-- {{form.get('address').get('line1')?.errors | json}} -->
+        
       </div>
       <div class="column">
         <label for="">Line 2</label>
         <input type="text" formControlName="line2">
         <app-field-error [control]="form.get('address').get('line2')"></app-field-error>
       </div>
-    </div>
-    <div class="columns" formArrayName="experience">
+    </div> -->
+    <div class="columns" formArrayName="details">
       <div class="column">
-        <h4 class="title is-5">Experience</h4>
-       <table class="table is-bordered">
+        <h4 class="title is-5">Details</h4>
+       <table class="table is-bordered" style="width:100%">
          <thead>
            <tr>
-             <th>Company</th>
-             <th>Title</th>
-             <th>From</th>
-             <th>To</th>
+             <th>No.</th>
+             <th>Label</th>
+             <th>Description</th>
+             
              <th>#</th>
            </tr>
          </thead>
          <tbody>
-           <tr *ngFor="let exp of experience.controls;let index=index" [formGroupName]="index">
+           <tr *ngFor="let exp of details.controls;let index=index" [formGroupName]="index">
+             <td>{{index+1}}</td>
              <td>
-               <input type="text" formControlName="companyName">
-               <app-field-error [control]="exp.get('companyName')"></app-field-error>
+               <input type="text" formControlName="label">
+               <app-field-error [control]="exp.get('label')"></app-field-error>
             </td>
-             <td><input type="text" formControlName="jobTitle">
-            
+             <td style="width:70%">
+               <textarea rows="2" cols="50" formControlName="description"></textarea>  
             </td>
-             <td><input type="text" formControlName="from"></td>
-             <td><input type="text" formControlName="to"></td>
-             <td><button (click)="deleteExp(index)">x</button></td>
+             <td><button class="button is-small is-danger" (click)="deleteExp(index)">x</button></td>
            </tr>
          </tbody>
        </table>
       </div>
     </div>
-
-
-
-
     <div>
-
       <button class="button is-primary" [disabled]="form.invalid" (click)="save()">Save</button>
-      <button class="button is-secondary" (click)="addExperience()">Add</button>
+      <button class="button is-secondary" (click)="addLabelAndDescription()">Add</button>
     </div>
 
   </form>

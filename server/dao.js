@@ -1,7 +1,7 @@
 var Datastore = require("nedb");
 var path = require("path");
 var db = {
-  produts: new Datastore({
+  products: new Datastore({
     filename: path.join(__dirname,"db","products"),
     autoload: true
   }), 

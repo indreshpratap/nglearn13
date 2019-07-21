@@ -1,5 +1,5 @@
 {"parentCategory":"aD81eVNbf1YYCBMF","categoryName":"Pizza","slug":"food-pizza","description":"this pizza","createdAt":{"$$date":1563088803399},"active":true,"_id":"7vAFeFr4CjX30apn"}
 {"parentCategory":"","categoryName":"Electronics","slug":"electronics","description":"This is electronics category","_id":"8r2Rk9bsReG0BmNl"}
+{"parentCategory":"8r2Rk9bsReG0BmNl","categoryName":"Mobiles","slug":"mobiles","description":"this is mobile category in electronics parent. category","createdAt":{"$$date":1563091688074},"active":true,"_id":"BhYEu48cYODKpdgy"}
 {"parentCategory":"","categoryName":"Food","slug":"food","description":"This is food category","_id":"aD81eVNbf1YYCBMF"}
 {"parentCategory":"7vAFeFr4CjX30apn","categoryName":"Veg Pizza","slug":"veg-pizza","description":"Veg pizza","createdAt":{"$$date":1563089391241},"active":true,"_id":"fq7WZmpqkIBQynus"}
-{"parentCategory":"8r2Rk9bsReG0BmNl","categoryName":"Mobiles","slug":"mobiles","description":"this is mobile category in electronics parent. category","createdAt":{"$$date":1563091688074},"active":true,"_id":"BhYEu48cYODKpdgy"}

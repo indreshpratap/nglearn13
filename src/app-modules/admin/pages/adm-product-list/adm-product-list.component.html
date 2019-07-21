@@ -5,18 +5,20 @@
     <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>Department</th>
-      <th>Color</th>
+      <th>Category</th>
+      <th>Description</th>
       <th>Price</th>
+      <th>#</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>
     <tr>
-      <td>{{ product.id }}</td>
+      <td>{{ product._id }}</td>
       <td>{{ product.name }}</td>
-      <td>{{ product.department }}</td>
-      <td>{{ product.color }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.description }}</td>
       <td>{{ product.price }}</td>
+      <td><a routerLink="/admin/product/edit/{{product._id}}">Edit</a></td>
     </tr>
   </ng-template>
 </p-table>

@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
+import { CartService } from '../providers/cart.service';
 
 @Component({
     selector: "app-header",
     templateUrl: "./header.component.html"
 })
 export class HeaderComponent {
-
+totalItemCount:number;
     menu: Array<any>;
 
-    constructor() {
+    constructor(public cartSvc:CartService) {
+        
+        
+        
+        
         this.menu = [
             { label: 'Home', link: "/" },
             { label: 'About', link: "/about" },
@@ -35,5 +40,13 @@ export class HeaderComponent {
             ]
         }
         ]
+    }
+
+    ngOnInit(): void {
+        this.cartSvc.onAddToCart.subscribe((total)=>{
+            console.log('Triggered the onCart changes');
+            this.totalItemCount = total;
+        })
+        
     }
 }

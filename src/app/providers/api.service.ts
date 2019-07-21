@@ -20,6 +20,10 @@ export class ApiClient {
     post(path:string,payload) {
         return this.httpClient.post<ApiResponse>(this.getUrl(path), payload);
     }
+    
+    put(path:string,payload) {
+        return this.httpClient.put<ApiResponse>(this.getUrl(path), payload);
+    }
 
     private getUrl(path:string) {
         return environment.apiPath + path;

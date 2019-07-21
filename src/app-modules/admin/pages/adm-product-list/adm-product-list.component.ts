@@ -17,7 +17,7 @@ export class AdmProductListComponent implements OnInit {
 
   ngOnInit() { 
   
-    this.apiClient.get("products").subscribe(res => {
+    this.apiClient.get("admin/products").subscribe(res => {
       if(res.status){
         this.products = res.data;
       }

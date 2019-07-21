@@ -54,7 +54,7 @@ app.get('/users', (req, res) => {
     }
     res.json(userCache);
 })
-app.get('/api/products', (req, res) => {
+app.get('/products', (req, res) => {
     if (!productCache.length) {
         prepareProductCache();
     }
