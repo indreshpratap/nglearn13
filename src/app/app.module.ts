@@ -7,9 +7,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import * as pages from './pages';
 import { ExampleModule } from '../app-modules/examples/example.module';
-import { AdminModule } from 'src/app-modules/admin/admin.module';
 import { ApiClient } from './providers/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AppSharedModule } from 'src/app-modules/shared/shared.module';
 
 
 const routes: Routes = [
@@ -17,6 +17,9 @@ const routes: Routes = [
     path: '',
     children: [
       { path: '', component: pages.HomePageComponent },
+      { path: 'details/:id/:name', component: pages.ProductDetailsComponent },
+      { path: 'details/:id', component: pages.ProductDetailsComponent },
+
       {
         path: "admin", loadChildren: "../app-modules/admin/admin.module#AdminModule" //lazy loaded routes
       }
@@ -40,6 +43,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    AppSharedModule,
     ExampleModule, // eager loading of feature module
     // AdminModule // eager loading of feature module
 

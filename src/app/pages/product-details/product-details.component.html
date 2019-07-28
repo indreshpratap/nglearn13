@@ -1,0 +1,22 @@
+<div>
+  <div *ngIf="detail">
+  <h2 class="title is-2"> {{detail.name}}</h2>
+  <div>Price : {{detail.price}}</div>
+  <div>{{detail.description}}</div>
+  <table class="table is-bordered">
+    <tr *ngFor="let d of detail.details">
+      <th>{{d.label}}</th>
+      <td>{{d.description}}</td>
+    </tr>
+  </table>
+  <hr>
+  </div>
+  <div>
+    <h3 class="title is-4">Suggested Items</h3>
+    <div class="columns is-multiline">
+      <div class="column is-3" *ngFor="let item of suggested">
+          <!-- <app-product-card [item]="item"></app-product-card> -->
+      </div>
+  </div>
+  </div>
+</div>
