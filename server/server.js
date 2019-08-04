@@ -4,7 +4,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const { SEND } = require('./api/helper');
 
-
 const mountApiRoutes = require('./api/api.routes');
 // server app
 const app = express();
@@ -59,7 +58,9 @@ app.get('/products', (req, res) => {
         prepareProductCache();
     }
     SEND(res, null,productCache);
-})
+});
+
+
 
 mountApiRoutes(app);
 

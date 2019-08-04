@@ -18,7 +18,7 @@
       </div>
   </div>
   <footer class="card-footer">
-      <button class="card-footer-item" (click)="cartSvc.addToCart(item)">Add To Cart</button>
+      <button class="card-footer-item">Add To Cart</button>
       <a [routerLink]="['/details',item._id,item.name]" [queryParams]="{productName: item.name}" class="card-footer-item">Details</a>
   </footer>
 

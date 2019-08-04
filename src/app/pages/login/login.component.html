@@ -1,0 +1,27 @@
+<form [formGroup]="form" (submit)="processForm($event)">
+  <div class="field" *ngIf="isSignup">
+    <label class="label">Name</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="username" [formControlName]="'name'">
+    </div>
+  </div>
+  
+  <div class="field">
+    <label class="label">username</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="" formControlName="username">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Password</label>
+    <div class="control">
+      <input class="input" type="password" placeholder="" formControlName="password">
+    </div>
+  </div>
+
+  <div>
+    <button class="button is-primary"> {{isSignup?'Sign up':'Login'}} </button>
+    <button class="button" type="reset">Clear</button>
+    <button *ngIf="!isSignup" class="button" type="button" (click)="signup()">Signup</button>
+  </div>
+</form>

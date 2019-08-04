@@ -18,6 +18,8 @@
             </ng-container>
         </div> 
         <div class="navbar-end">
+            <a *ngIf="!userSvc.loggedIn" class="navbar-item" routerLink="/login">Login</a>
+            <a *ngIf="userSvc.loggedIn" class="navbar-item">Hi {{userSvc.userInfo.username}} (<span (click)="logout()">Logout</span>)</a>
             <a class="navbar-item">Cart <span style="color:red"> ({{totalItemCount}})</span></a>
         </div>
 

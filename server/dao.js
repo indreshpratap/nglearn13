@@ -5,10 +5,18 @@ var db = {
     filename: path.join(__dirname,"db","products"),
     autoload: true
   }), 
+  
   categories: new Datastore({
     filename: path.join(__dirname,"db","categories"),
     autoload: true
-  })
+  }),
+
+  users: new Datastore({
+    filename: path.join(__dirname,"db","users"),
+    autoload: true
+  }),
+
+
    
 };
 
